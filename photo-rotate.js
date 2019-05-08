@@ -61,6 +61,7 @@ class PhotoRotate extends PolymerElement {
     };
   }
   _upload(e) {
+    e.preventDefault();
     if (e && e.target && e.target.id) {
       const target = e.target.id;
       const file = this.shadowRoot.querySelector(`#${target}`).files[0];
@@ -90,7 +91,8 @@ class PhotoRotate extends PolymerElement {
                   height = maxSize;
                 }
               }
-              if (orientation === 6) {
+              //if (orientation === 6) {
+              if (navigator.userAgent.match(/ipad|iphone/i)) { // TODO: This needs testing 
                 canvas.width = height;
                 canvas.height = width;
                 const ctx = canvas.getContext('2d')
